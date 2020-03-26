@@ -1,5 +1,5 @@
 # Star-encryption
-> A new way to encrypte message that use braille and trigonometric spatial representation.
+A new way to encrypte message that use braille and trigonometric spatial representation.
 
 
 ![](first_look.png)
