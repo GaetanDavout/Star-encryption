@@ -7,11 +7,11 @@ A new way to encrypte message that use braille and trigonometric spatial represe
 ## Install
 * Clone this repository:
 ```
-git clone https://github.com/italogfernandes/xablaus.git
+git clone https://github.com/GaetanDavout/Star-encryption.git
 ```
-* Install the packages and dependencies...
+* Install the packages and dependencies... (when the file will be created)
 ```
-pip install -r requerements.txt
+pip install -r requerements.txt 
 ```
 
 ## Running:
