@@ -12,7 +12,7 @@ import random
 """ Next Improvements :
         - variable position from init       [#####-----] 50% redo that
         - add background                    [#########-] 90%
-        - make a central hole               [#---------] 10%
+        - make a central hole               [###-------] 10%
         - add random points in the center   [#---------] 10%
         - make a command of this            [#---------] 10%
 """
@@ -23,7 +23,7 @@ import random
 # the shorter parts are the better the result is.
 # don't let any empty lines.
 # don't write after or before the ''''.
-text = ''''
+text = '''
 je cueille des fleurs 
 d'orchis au printemps
 et les jette dans les nuages
@@ -46,7 +46,7 @@ lim_big = 70
 # variability of star from there readable position
 # the closer to zero the more variable it is.
 # 100 is the most you can set to be sure to be able to read it
-pos_variability = 10
+steadyness = 25
 
 
 ##############################################################################
@@ -102,6 +102,7 @@ dt = np.array([[1, 0, 0, 0, 0, 0],  # a U 1
                [0, 0, 1, 1, 1, 0],  # !
                [0, 0, 0, 0, 1, 0],  # '
                [0, 0, 0, 0, 1, 1],  # -
+               [1, 1, 1, 1, 1, 1],  # *
                [0, 0, 0, 0, 0, 0],  # " "
                ])
 
@@ -139,7 +140,8 @@ switcher = {"a": 0,     "A": 0,     "1": 0,
             "!": 30,
             "'": 31,
             "-": 32,
-            " ": 33,
+            "*": 33,
+            " ": 34,
             }
 
 ##############################################################################
@@ -155,7 +157,8 @@ del lines[-1]
 
 # Process line after line
 nLines = len(lines)
-for i in range(nLines): #decommante apres tests
+
+for i in range(nLines):
     currentLine = (lines[i])
     nCarac = len(lines[i])
     
@@ -190,62 +193,62 @@ for i in range(nLines): #decommante apres tests
         if dt[switcher[currentLine[j]],0] == 1:
             r = random.randrange(100)
             if r > lim_brightest:
-                plt.scatter(x1[j*2]+(x1[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y1[j*2]+(y1[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_brightest, c = 'white', marker = '.')
+                plt.scatter(x1[j*2]+(y1[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), y1[j*2]+(x1[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_brightest, c = 'w', marker = '.')
             elif r > lim_big:
-                plt.scatter(x1[j*2]+(x1[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y1[j*2]+(y1[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_big, c = 'white', marker = '.')
+                plt.scatter(x1[j*2]+(y1[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), y1[j*2]+(x1[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_big, c = 'w', marker = '.')
             else:
-                plt.scatter(x1[j*2]+(x1[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y1[j*2]+(y1[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_mediocre, c = 'white', marker = '.')
-                    
+                plt.scatter(x1[j*2]+(y1[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), y1[j*2]+(x1[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_mediocre, c = 'w', marker = '.')
+               
         if dt[switcher[currentLine[j]],1] == 1:
             r = random.randrange(100)
             if r > lim_brightest:
-                plt.scatter(x1[j*2+1]+(x1[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y1[j*2+1]+(y1[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_brightest, c = 'white', marker = '.')
+                plt.scatter(x1[j*2+1]+(y1[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), y1[j*2+1]+(x1[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_brightest, c = 'w', marker = '.')
             elif r > lim_big:
-                plt.scatter(x1[j*2+1]+(x1[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y1[j*2+1]+(y1[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_big, c = 'white', marker = '.')
+                plt.scatter(x1[j*2+1]+(y1[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), y1[j*2+1]+(x1[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_big, c = 'w', marker = '.')
             else:
-                plt.scatter(x1[j*2+1]+(x1[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y1[j*2+1]+(y1[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_mediocre, c = 'white', marker = '.')
+                plt.scatter(x1[j*2+1]+(y1[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), y1[j*2+1]+(x1[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_mediocre, c = 'w', marker = '.')
                 
                 
         # second braille line
         if dt[switcher[currentLine[j]],2] == 1:
             r = random.randrange(100)
             if r > lim_brightest:
-                plt.scatter(x2[j*2]+(x2[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y2[j*2]+(y2[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_brightest, c = 'white', marker = '.')
+                plt.scatter(x2[j*2]+(y2[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), y2[j*2]+(x2[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_brightest, c = 'w', marker = '.')
             elif r > lim_big:
-                plt.scatter(x2[j*2]+(x2[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y2[j*2]+(y2[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_big, c = 'white', marker = '.')
+                plt.scatter(x2[j*2]+(y2[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), y2[j*2]+(x2[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_big, c = 'w', marker = '.')
             else:
-                plt.scatter(x2[j*2]+(x2[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y2[j*2]+(y2[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_mediocre, c = 'white', marker = '.')
+                plt.scatter(x2[j*2]+(y2[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), y2[j*2]+(x2[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_mediocre, c = 'w', marker = '.')
                     
         if dt[switcher[currentLine[j]],3] == 1:
             r = random.randrange(100)
             if r > lim_brightest:
-                plt.scatter(x2[j*2+1]+(x2[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y2[j*2+1]+(y2[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_brightest, c = 'white', marker = '.')
+                plt.scatter(x2[j*2+1]+(y2[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), y2[j*2+1]+(x2[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_brightest, c = 'w', marker = '.')
             elif r > lim_big:
-                plt.scatter(x2[j*2+1]+(x2[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y2[j*2+1]+(y2[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_big, c = 'white', marker = '.')
+                plt.scatter(x2[j*2+1]+(y2[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), y2[j*2+1]+(x2[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_big, c = 'w', marker = '.')
             else:
-                plt.scatter(x2[j*2+1]+(x2[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y2[j*2+1]+(y2[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_mediocre, c = 'white', marker = '.')
+                plt.scatter(x2[j*2+1]+(y2[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), y2[j*2+1]+(x2[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_mediocre, c = 'w', marker = '.')
            
             
         # thrid braille line
         if dt[switcher[currentLine[j]],0] == 1:
             r = random.randrange(100)
             if r > lim_brightest:
-                plt.scatter(x3[j*2]+(x3[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y3[j*2]+(y3[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_brightest, c = 'white', marker = '.')
+                plt.scatter(x3[j*2]+(y3[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), y3[j*2]+(x3[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_brightest, c = 'w', marker = '.')
             elif r > lim_big:
-                plt.scatter(x3[j*2]+(x3[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y3[j*2]+(y3[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_big, c = 'white', marker = '.')
+                plt.scatter(x3[j*2]+(y3[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), y3[j*2]+(x3[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_big, c = 'w', marker = '.')
             else:
-                plt.scatter(x3[j*2]+(x3[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y3[j*2]+(y3[j*2]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_mediocre, c = 'white', marker = '.')
+                plt.scatter(x3[j*2]+(y3[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), y3[j*2]+(x3[j*2]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_mediocre, c = 'w', marker = '.')
                     
         if dt[switcher[currentLine[j]],1] == 1:
             r = random.randrange(100)
             if r > lim_brightest:
-                plt.scatter(x3[j*2+1]+(x3[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y3[j*2+1]+(y3[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_brightest, c = 'white', marker = '.')
+                plt.scatter(x3[j*2+1]+(y3[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), y3[j*2+1]+(x3[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_brightest, c = 'w', marker = '.')
             elif r > lim_big:
-                plt.scatter(x3[j*2+1]+(x3[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y3[j*2+1]+(y3[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_big, c = 'white', marker = '.')
+                plt.scatter(x3[j*2+1]+(y3[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), y3[j*2+1]+(x3[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_big, c = 'w', marker = '.')
             else:
-                plt.scatter(x3[j*2+1]+(x3[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), y3[j*2+1]+(y3[j*2+1]*(((random.randrange(100)-50)/pos_variability)/nCarac)), s = size_mediocre, c = 'white', marker = '.')
+                plt.scatter(x3[j*2+1]+(y3[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), y3[j*2+1]+(x3[j*2+1]*(((random.randrange(100)-50)/steadyness)/nCarac)), s = size_mediocre, c = 'w', marker = '.')
                 
-                
+            
 
 ##############################################################################
                 
@@ -254,7 +257,7 @@ for i in range(nLines): #decommante apres tests
 
 # print the background
 img = plt.imread("skymap14cleaned.jpg")
-plt.imshow(img, extent=[-1.23,1.23,-1.23,1.23])
+plt.imshow(img, extent=[-1.23,1.23,-1.2,1.26])
 
 
 # add ornament
