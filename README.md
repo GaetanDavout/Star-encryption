@@ -1,5 +1,6 @@
 # Star-encryption
 A new way to encrypte message that use braille and trigonometric spatial representation.
+You will obtain beautiful output like the following one with raw text.
 
 ![](result/second_look.png)
 
@@ -17,7 +18,10 @@ pip install -r requerements.txt
 
 * use it like a common python script
 * change the setting with config.txt
-* see the paramView folder to have an idea of what it make
+* use a raw .txt file for your text
+
+N.B.: don't use accented characters yet
+N.B.: see the paramView folder to have an idea of what parameters make
 
 ## License
 
