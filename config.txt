@@ -1,0 +1,75 @@
+# StarEncryption Configuration 
+#	Gaetan Davout
+#
+#   *   '*
+#           *
+#                *
+#                       *
+#               *
+#                     *
+#
+# change value here to adapt you encryption
+
+[IO]
+# text file that will be convert. 
+# the shorter parts are the better the result is.
+# you should also egalize your parts.
+# to test with all stars change text to : src/densityFull.txt
+textfile = src/textToConvert.txt
+outputfile = result/new.png
+
+[Stars]
+# size of the "stars" 
+# mediocre mean the most of them will have this size
+# all other will be bigger
+# (float)
+size_brightest = 8
+size_big = 4
+size_mediocre = 1
+
+# percentage of brighter star
+# (float) range from 0 to 100
+brightest_rate = 5
+big_rate = 20
+
+# variability of star from there readable position
+# the closer to zero the more variable it is.
+# 100 is the most you can set to be sure to be able to read it
+# (uint) stricly superior to 0
+steadyness = 50
+
+# central hole relative size
+# set 1 to randomHole if you want to fill the center
+# (float)
+# don't touch that
+holesize = 1
+# (uint) range from 0 to 100
+centralDensity = 33
+# (bool)
+randomHole = true
+
+# color of each part of braille characters
+# plus one color for the center
+color0 = w
+color1 = w
+color2 = w
+color3 = w
+color4 = w
+color5 = w
+centralcolor = w
+
+[msg]
+# print param of encryption to help decoding
+# X:Y:Z.Z	X = number of line
+#		Y = number of character per line
+# 		Z = hole size
+# (bool)
+decodeHelp = false
+
+[Debug]
+# you can print the stars multiple times by increasing this param
+# (uint)
+nPass = 1
+# print debug text in console
+# (bool)
+debugging = false
