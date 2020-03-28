@@ -20,8 +20,8 @@ pip install -r requerements.txt
 * change the setting with config.txt
 * use a raw .txt file for your text
 
-N.B.: don't use accented characters yet
-N.B.: see the paramView folder to have an idea of what parameters make
+N.B. : don't use accented characters yet \n
+N.B. : see the paramView folder to have an idea of what parameters make
 
 ## License
 
