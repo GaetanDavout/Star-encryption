@@ -16,7 +16,7 @@
 # you should also egalize your parts.
 # to test with all stars change text to : src/densityFull.txt
 textfile = src/textToConvert.txt
-outputfile = result/testFct.png
+outputfile = result/test.png
 
 [Stars]
 # size of the "stars" 
