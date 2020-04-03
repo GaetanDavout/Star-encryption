@@ -16,7 +16,7 @@
 # you should also egalize your parts.
 # to test with all stars change text to : src/densityFull.txt
 textfile = src/textToConvert.txt
-outputfile = result/new.png
+outputfile = result/testFct.png
 
 [Stars]
 # size of the "stars" 
@@ -32,21 +32,14 @@ size_mediocre = 1
 brightest_rate = 5
 big_rate = 20
 
-# variability of star from there readable position
-# the closer to zero the more variable it is.
-# 100 is the most you can set to be sure to be able to read it
-# (uint) stricly superior to 0
-steadyness = 50
+# variability of star position
+# range from 0 to 100 to have a readable starmap
+# (float) max variability readable = 100 (min=0)
+variability = 100
 
-# central hole relative size
-# set 1 to randomHole if you want to fill the center
-# (float)
-# don't touch that
-holesize = 1
+# central hole density (= star without meaning in the center)
 # (uint) range from 0 to 100
-centralDensity = 33
-# (bool)
-randomHole = true
+centralDensity = 100
 
 # color of each part of braille characters
 # plus one color for the center
@@ -64,7 +57,7 @@ centralcolor = w
 #		Y = number of character per line
 # 		Z = hole size
 # (bool)
-decodeHelp = false
+decodeHelp = true
 
 [Debug]
 # you can print the stars multiple times by increasing this param
