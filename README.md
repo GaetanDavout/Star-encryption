@@ -9,7 +9,7 @@ You will obtain beautiful output like the following one with raw text.
 ```
 git clone https://github.com/GaetanDavout/Star-encryption.git
 ```
-* Install the packages and dependencies... (when the file will be created)
+* Install the packages and dependencies:
 ```
 pip install -r requerements.txt 
 ```
@@ -19,8 +19,6 @@ pip install -r requerements.txt
 * use it like a common python script
 * change the setting with config.txt
 * use a raw .txt file for your text
-
-N.B. : don't use accented characters yet
 
 N.B. : see the paramView folder to have an idea of what parameters make
 
