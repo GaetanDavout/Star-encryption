@@ -2,7 +2,7 @@
 A new way to encrypte message that use braille and trigonometric spatial representation.
 You will obtain beautiful output like the following one with raw text.
 
-![](result/second_look.png)
+![](result/example.png)
 
 ## Install
 * Clone this repository:
